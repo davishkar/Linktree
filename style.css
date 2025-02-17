@@ -5,88 +5,36 @@
 }
 
 body {
-    background-color: #f5f5f5;
-    color: #333;
-    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-}
-
-/* Updated Header Styles */
-h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #333;
-    text-align: center;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-    background: linear-gradient(45deg, #333, #666);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-h1 + p {
-    font-size: 1.2rem;
-    color: #666;
-    text-align: center;
-    margin-bottom: 30px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-}
-
-/* Header Styles */
-header {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 20px;
-    margin-bottom: 20px;
-}
-
-.share-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.share-button:hover {
-    transform: scale(1.1);
 }
 
 /* Container Styles */
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 380px;
     margin: 0 auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background-color: #121212;
+    border-radius: 15px;
+    margin-top: 20px;
 }
 
-/* Profile Image Styles */
+/* Profile Styles */
 .image-container {
-    width: 120px;
-    height: 120px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 20px;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
 }
 
 .image-container img {
@@ -95,172 +43,120 @@ header {
     object-fit: cover;
 }
 
-/* Tile Styles */
+h1 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+h1 + p {
+    font-size: 14px;
+    color: #a8a8a8;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* Link Tiles */
 .tile {
     width: 100%;
-    max-width: 500px;
-    background-color: white;
-    margin: 10px 0;
-    border-radius: 12px;
-    padding: 15px 20px;
+    background-color: #1e1e1e;
+    margin: 8px 0;
+    border-radius: 8px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #333;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    position: relative;
-    border: 1px solid #eee;
+    color: #fff;
+    transition: background-color 0.2s ease;
 }
 
-.tile:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    background-color: #f8f8f8;
+.tile:hover, .tile:active {
+    background-color: #2a2a2a;
 }
 
 .tile .icon {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-right: 15px;
+}
+
+.tile .icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
 }
 
 .tile p {
     flex-grow: 1;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-/* Share Button Styles */
+/* Share Button */
 .tile-share-button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #f5f5f5;
+    width: 24px;
+    height: 24px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.tile-share-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Header Share Button */
+.share-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #fff;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.tile-share-button:hover {
-    background-color: #eee;
-    transform: scale(1.1);
-}
-
-/* Responsive Design */
+/* Mobile Optimizations */
 @media screen and (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h1 + p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-
     .container {
-        padding: 15px;
-        border-radius: 15px;
+        max-width: 100%;
+        border-radius: 0;
+        min-height: 100vh;
+        margin-top: 0;
+        padding: 16px;
     }
-
-    .image-container {
-        width: 100px;
-        height: 100px;
-    }
-
+    
     .tile {
-        padding: 12px 15px;
-        margin: 8px 0;
-    }
-
-    .tile p {
-        font-size: 14px;
-    }
-
-    .tile .icon {
-        width: 25px;
-        height: 25px;
-        margin-right: 12px;
-    }
-
-    .tile-share-button {
-        width: 25px;
-        height: 25px;
+        margin: 6px 0;
     }
 }
 
+/* Small Screen Adjustments */
 @media screen and (max-width: 320px) {
-    h1 {
-        font-size: 1.75rem;
-    }
-
-    h1 + p {
-        font-size: 0.9rem;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
     .image-container {
         width: 80px;
         height: 80px;
     }
-
-    .tile {
-        padding: 10px;
+    
+    h1 {
+        font-size: 18px;
     }
-
-    .tile p {
+    
+    h1 + p {
         font-size: 13px;
     }
-}
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #121212;
-        color: #fff;
-    }
-
-    h1 {
-        background: linear-gradient(45deg, #fff, #ccc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    h1 + p {
-        color: #ccc;
-    }
-
-    .container {
-        background-color: #1e1e1e;
-    }
-
+    
     .tile {
-        background-color: #1e1e1e;
-        border-color: #333;
-        color: #fff;
-    }
-
-    .tile:hover {
-        background-color: #2a2a2a;
-    }
-
-    .tile-share-button {
-        background-color: #2a2a2a;
-    }
-
-    .tile-share-button:hover {
-        background-color: #333;
-    }
-
-    .share-button {
-        background-color: #1e1e1e;
-        color: #fff;
+        padding: 10px 14px;
     }
 }
