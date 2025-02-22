@@ -10,22 +10,26 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center; /* Centering the content */
+    background-image: url('https://res.cloudinary.com/dtrmjjphv/image/upload/v1703698127/bbblurry_1_uwz6tb.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Container Styles */
 .container {
     width: 100%;
-    max-width: 380px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 400px; /* Slightly increased width */
+    margin: 20px auto;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #121212;
     border-radius: 15px;
-    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Profile Styles */
@@ -34,7 +38,7 @@ body {
     height: 96px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .image-container img {
@@ -44,16 +48,16 @@ body {
 }
 
 h1 {
-    font-size: 20px;
+    font-size: 22px;
     color: #fff;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     text-align: center;
 }
 
 h1 + p {
     font-size: 14px;
     color: #a8a8a8;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     text-align: center;
 }
 
@@ -61,9 +65,9 @@ h1 + p {
 .tile {
     width: 100%;
     background-color: #1e1e1e;
-    margin: 8px 0;
-    border-radius: 8px;
-    padding: 12px 16px;
+    margin: 12px 0; /* Increased margin for better spacing */
+    border-radius: 10px;
+    padding: 16px 20px; /* Increased padding for larger buttons */
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -76,29 +80,29 @@ h1 + p {
 }
 
 .tile .icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
+    width: 24px;
+    height: 24px;
+    margin-right: 14px;
     display: flex;
     align-items: center;
 }
 
 .tile .icon svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     fill: currentColor;
 }
 
 .tile p {
     flex-grow: 1;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
 }
 
 /* Share Button */
 .tile-share-button {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,8 +110,8 @@ h1 + p {
 }
 
 .tile-share-button svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
 }
 
 /* Header Share Button */
@@ -129,15 +133,24 @@ h1 + p {
 /* Mobile Optimizations */
 @media screen and (max-width: 480px) {
     .container {
-        max-width: 100%;
-        border-radius: 0;
-        min-height: 100vh;
-        margin-top: 0;
-        padding: 16px;
+        max-width: 90%;
+        border-radius: 10px;
+        padding: 20px;
     }
-    
+
     .tile {
-        margin: 6px 0;
+        margin: 10px 0;
+        padding: 14px 18px;
+    }
+
+    .tile .icon {
+        width: 22px;
+        height: 22px;
+        margin-right: 12px;
+    }
+
+    .tile p {
+        font-size: 15px;
     }
 }
 
@@ -147,16 +160,16 @@ h1 + p {
         width: 80px;
         height: 80px;
     }
-    
+
     h1 {
         font-size: 18px;
     }
-    
+
     h1 + p {
         font-size: 13px;
     }
-    
+
     .tile {
-        padding: 10px 14px;
+        padding: 12px 16px;
     }
 }
