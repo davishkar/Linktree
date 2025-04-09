@@ -33,3 +33,15 @@ function showToast(message) {
         setTimeout(() => toast.remove(), 500);
     }, 3000);
 }
+// Visitor Counter using CountAPI
+fetch('https://api.countapi.xyz/hit/avishkar-linktree/visits')
+    .then(res => res.json())
+    .then(data => {
+        const counterEl = document.getElementById('visitor-counter');
+        if (counterEl) {
+            counterEl.textContent = `👀 Page views: ${data.value}`;
+        }
+    })
+    .catch(err => {
+        console.error("Visitor count failed", err);
+    });
