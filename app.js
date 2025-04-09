@@ -38,10 +38,16 @@ fetch('https://api.countapi.xyz/hit/avishkar-linktree/visits')
     .then(res => res.json())
     .then(data => {
         const counterEl = document.getElementById('visitor-counter');
-        if (counterEl) {
-            counterEl.textContent = `👀 Page views: ${data.value}`;
+        if (counterEl && data.value !== undefined) {
+            counterEl.textContent = `👁️ Page views: ${data.value}`;
+        } else {
+            counterEl.textContent = `👁️ Page views: unavailable`;
         }
     })
     .catch(err => {
         console.error("Visitor count failed", err);
+        const counterEl = document.getElementById('visitor-counter');
+        if (counterEl) {
+            counterEl.textContent = `👁️ Page views: error`;
+        }
     });
