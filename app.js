@@ -33,23 +33,3 @@ function showToast(message) {
         setTimeout(() => toast.remove(), 500);
     }, 3000);
 }
-document.addEventListener("DOMContentLoaded", () => {
-    // Replace 'avishkar-linktree' with something unique to you (only once)
-    const counterEl = document.getElementById('visitor-counter');
-
-    fetch('https://api.countapi.xyz/update/avishkar-linktree/visits/?amount=1')
-        .then(res => res.json())
-        .then(data => {
-            if (counterEl && data.value !== undefined) {
-                counterEl.textContent = `👁️ Page views: ${data.value}`;
-            } else {
-                counterEl.textContent = `👁️ Page views: unavailable`;
-            }
-        })
-        .catch(err => {
-            console.error("Visitor count failed", err);
-            if (counterEl) {
-                counterEl.textContent = `👁️ Page views: error`;
-            }
-        });
-});
