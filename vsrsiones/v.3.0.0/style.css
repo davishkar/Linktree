@@ -37,6 +37,23 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://res.cloudinary.com/dtrmjjphv/image/upload/v1703698127/bbblurry_1_uwz6tb.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: bgMove 15s infinite linear;
+    transition: background-color 0.3s ease;
+    line-height: 1.6;
+}
+
 /* ===== LOADING SCREEN ===== */
 .loading-screen {
     position: fixed;
@@ -507,6 +524,8 @@ h1 {
               dashOffset 2s linear infinite;
     transform-origin: center;
 }
+
+
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
