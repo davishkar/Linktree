@@ -84,7 +84,11 @@
         }
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" href="https://cdn.tailwindcss.com/3.4.16.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.tailwindcss.com/3.4.16.css">
+    </noscript>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -239,7 +243,8 @@
                     <div
                         class="w-24 h-24 rounded-full overflow-hidden border-4 border-gradient-to-r from-purple-400 to-pink-400 animate-glow mx-auto">
                         <img src="https://res.cloudinary.com/dtrmjjphv/image/upload/v1744211702/Avishkar_Avatar_xqwduw.webp"
-                            alt="Avishkar Avatar" class="w-full h-full object-cover" loading="lazy">
+                            alt="Avishkar Avatar" class="w-full h-full object-cover" fetchpriority="high"
+                            decoding="async">
                     </div>
                     <div
                         class="absolute -inset-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse opacity-50 -z-10">
@@ -672,7 +677,7 @@
             background: rgba(255, 255, 255, 0.5);
         }
     </style> -->
-    <script src=" aap.js">
+    <script src="aap.js" defer></script>
     </script>
 </body>
 
