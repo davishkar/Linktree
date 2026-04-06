@@ -1,22 +1,23 @@
 /* ===== CSS VARIABLES ===== */
 :root {
-    --bg-color: #000;
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1a1a1a;
-    --container-bg: #121212;
-    --tile-bg: #1e1e1e;
-    --tile-hover-bg: #2a2a2a;
-    --text-color: #fff;
-    --text-primary: #fff;
-    --text-secondary: #a8a8a8;
-    --subtext-color: #a8a8a8;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --accent-gradient: linear-gradient(45deg, #973BED, #007CFF, #00E0ED);
-    --border-radius: 10px;
+    --bg-color: #F8F9FA;
+    --bg-primary: #F8F9FA;
+    --bg-secondary: #FFFFFF;
+    --container-bg: #FFFFFF;
+    --tile-bg: #FFFFFF;
+    --tile-hover-bg: #F8F9FA;
+    --text-color: #1F2937;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --subtext-color: #6B7280;
+    --shadow-color: rgba(30, 58, 138, 0.1);
+    --accent-gradient: linear-gradient(45deg, #1E3A8A, #F59E0B);
+    --border-radius: 12px;
     --transition: all 0.3s ease;
 }
 
 .light-theme {
+    /* Retained for backward compatibility in case toggle is somehow pressed */
     --bg-color: #f5f5f5;
     --bg-primary: #f5f5f5;
     --bg-secondary: #ffffff;

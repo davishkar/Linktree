@@ -9,51 +9,55 @@ const body = document.body;
 const currentTheme = localStorage.getItem("theme") || "dark";
 if (currentTheme === "light") {
   body.classList.add("light");
-  toggleSlider.style.transform = "translateX(32px)";
-  moonIcon.classList.add("hidden");
-  sunIcon.classList.remove("hidden");
+  if (toggleSlider) toggleSlider.style.transform = "translateX(32px)";
+  if (moonIcon) moonIcon.classList.add("hidden");
+  if (sunIcon) sunIcon.classList.remove("hidden");
 }
 
-themeToggle.addEventListener("click", () => {
-  body.classList.toggle("light");
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("light");
 
-  if (body.classList.contains("light")) {
-    toggleSlider.style.transform = "translateX(32px)";
-    moonIcon.classList.add("hidden");
-    sunIcon.classList.remove("hidden");
-    localStorage.setItem("theme", "light");
-  } else {
-    toggleSlider.style.transform = "translateX(0px)";
-    moonIcon.classList.remove("hidden");
-    sunIcon.classList.add("hidden");
-    localStorage.setItem("theme", "dark");
-  }
-});
+    if (body.classList.contains("light")) {
+      if (toggleSlider) toggleSlider.style.transform = "translateX(32px)";
+      if (moonIcon) moonIcon.classList.add("hidden");
+      if (sunIcon) sunIcon.classList.remove("hidden");
+      localStorage.setItem("theme", "light");
+    } else {
+      if (toggleSlider) toggleSlider.style.transform = "translateX(0px)";
+      if (moonIcon) moonIcon.classList.remove("hidden");
+      if (sunIcon) sunIcon.classList.add("hidden");
+      localStorage.setItem("theme", "dark");
+    }
+  });
+}
 
 // Share Functionality
 const shareBtn = document.getElementById("shareBtn");
 const shareLinkBtns = document.querySelectorAll(".share-link-btn");
 
 // Main share button - shares the current page
-shareBtn.addEventListener("click", async () => {
-  try {
-    if (navigator.share) {
-      await navigator.share({
-        title: "Avishkar - The Developer",
-        text: "Check out Avishkar's profile and links!",
-        url: window.location.href,
-      });
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      await navigator.clipboard.writeText(window.location.href);
-      showNotification("Page link copied to clipboard!");
+if (shareBtn) {
+  shareBtn.addEventListener("click", async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "Avishkar - The Developer",
+          text: "Check out Avishkar's profile and links!",
+          url: window.location.href,
+        });
+      } else {
+        // Fallback for browsers that don't support Web Share API
+        await navigator.clipboard.writeText(window.location.href);
+        showNotification("Page link copied to clipboard!");
+      }
+    } catch (error) {
+      // Fallback if clipboard API also fails
+      console.log("Share failed:", error);
+      showNotification("Unable to share at this time");
     }
-  } catch (error) {
-    // Fallback if clipboard API also fails
-    console.log("Share failed:", error);
-    showNotification("Unable to share at this time");
-  }
-});
+  });
+}
 
 // Individual link share buttons
 shareLinkBtns.forEach((btn) => {
@@ -108,8 +112,22 @@ function showNotification(message) {
   }, 3000);
 }
 
+function initVisitorCounter() {
+  const counterElement = document.getElementById("visitorCount");
+  if (!counterElement) return;
+
+  const storageKey = "avishkar-linktree-visitor-count";
+  const previousCount = Number(localStorage.getItem(storageKey) || "0");
+  const nextCount = previousCount + 1;
+
+  localStorage.setItem(storageKey, String(nextCount));
+  counterElement.textContent = nextCount.toLocaleString();
+}
+
 // Add some interactive effects
 document.addEventListener("DOMContentLoaded", () => {
+  initVisitorCounter();
+
   // Add subtle parallax effect to background elements
   document.addEventListener("mousemove", (e) => {
     const mouseX = e.clientX / window.innerWidth;
@@ -125,15 +143,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Add entrance animation
-  const profileCard = document.querySelector(".bg-white\\/10");
-  profileCard.style.opacity = "0";
-  profileCard.style.transform = "translateY(30px)";
+  const profileCard = document.querySelector(".bg-white\\/10") || document.querySelector(".bg-white.rounded-3xl");
+  if (profileCard) {
+    profileCard.style.opacity = "0";
+    profileCard.style.transform = "translateY(30px)";
 
-  setTimeout(() => {
-    profileCard.style.transition = "all 0.8s ease-out";
-    profileCard.style.opacity = "1";
-    profileCard.style.transform = "translateY(0)";
-  }, 200);
+    setTimeout(() => {
+      profileCard.style.transition = "all 0.8s ease-out";
+      profileCard.style.opacity = "1";
+      profileCard.style.transform = "translateY(0)";
+    }, 200);
+  }
 
   // Stagger animation for links
   const links = document.querySelectorAll(".space-y-4 > a");
@@ -188,122 +208,6 @@ const lightModeStyles = `
 const styleSheet = document.createElement("style");
 styleSheet.textContent = lightModeStyles;
 document.head.appendChild(styleSheet);
-
-// Loader Animation Script
-class LoaderManager {
-  constructor() {
-    this.loadingScreen = document.getElementById("loadingScreen");
-    this.loadingText = document.querySelector(".loading-text");
-    this.mainContent = document.querySelector(".main-content");
-    this.currentStep = 0;
-    this.loadingSteps = [
-      "Building Your Link Universe...",
-      "Fetching Featured Links...",
-      "Loading Social Media Portals...",
-      "Connecting to Avishkar's Services...",
-      "Customizing Your Experience...",
-      "Welcome to DEV AVISHKAR Link Hub!",
-    ];
-
-    this.init();
-  }
-
-  init() {
-    // Set initial loading text
-    if (this.loadingText) {
-      this.loadingText.textContent = this.loadingSteps[0];
-      this.loadingText.style.opacity = "0.8";
-    }
-
-    // Start the loading sequence
-    this.startLoadingSequence();
-
-    // Handle page load completion
-    window.addEventListener("load", () => {
-      this.handlePageLoad();
-    });
-
-    // Fallback timeout to ensure loader doesn't stay forever
-    setTimeout(() => {
-      this.completeLoading();
-    }, 8000);
-  }
-
-  startLoadingSequence() {
-    // Start cycling through loading messages
-    this.cycleLoadingText();
-
-    // Start progress animation
-    this.animateProgress();
-  }
-
-  cycleLoadingText() {
-    const interval = setInterval(() => {
-      if (this.currentStep < this.loadingSteps.length - 1) {
-        this.currentStep++;
-        this.updateLoadingText(this.loadingSteps[this.currentStep]);
-      } else {
-        clearInterval(interval);
-        // Wait a moment before completing
-        setTimeout(() => {
-          this.completeLoading();
-        }, 1000);
-      }
-    }, 1200);
-  }
-
-  updateLoadingText(text) {
-    if (this.loadingText) {
-      // Fade out
-      this.loadingText.style.opacity = "0";
-
-      setTimeout(() => {
-        // Update text and fade in
-        this.loadingText.textContent = text;
-        this.loadingText.style.opacity = "0.8";
-      }, 150);
-    }
-  }
-
-  animateProgress() {
-    // The progress animation is handled by CSS
-    // This method can be extended for more complex progress tracking
-    const progressFill = document.querySelector(".progress-fill");
-    if (progressFill) {
-      progressFill.style.animation = "progressFill 4s ease-in-out forwards";
-    }
-  }
-
-  handlePageLoad() {
-    // Additional logic when page is fully loaded
-    // Can be used to ensure all resources are ready
-    console.log("Page fully loaded");
-  }
-
-  completeLoading() {
-    if (
-      this.loadingScreen &&
-      !this.loadingScreen.classList.contains("hidden")
-    ) {
-      // Fade out loading screen
-      this.loadingScreen.classList.add("hidden");
-
-      // Show main content after a delay
-      setTimeout(() => {
-        if (this.mainContent) {
-          this.mainContent.classList.add("visible");
-        }
-
-        // Remove loading screen from DOM after transition
-        setTimeout(() => {
-          if (this.loadingScreen && this.loadingScreen.parentNode) {
-            this.loadingScreen.parentNode.removeChild(this.loadingScreen);
-          }
-        }, 500);
-      }, 200);
-    }
-  }
-}
 
 // Theme Management
 class ThemeManager {
@@ -504,7 +408,6 @@ class PerformanceMonitor {
 // Initialize everything when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize all managers
-  new LoaderManager();
   new ThemeManager();
   new ShareManager();
   new TileManager();
@@ -541,7 +444,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Export for module usage (optional)
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
-    LoaderManager,
     ThemeManager,
     ShareManager,
     TileManager,
