@@ -112,22 +112,8 @@ function showNotification(message) {
   }, 3000);
 }
 
-function initVisitorCounter() {
-  const counterElement = document.getElementById("visitorCount");
-  if (!counterElement) return;
-
-  const storageKey = "avishkar-linktree-visitor-count";
-  const previousCount = Number(localStorage.getItem(storageKey) || "0");
-  const nextCount = previousCount + 1;
-
-  localStorage.setItem(storageKey, String(nextCount));
-  counterElement.textContent = nextCount.toLocaleString();
-}
-
 // Add some interactive effects
 document.addEventListener("DOMContentLoaded", () => {
-  initVisitorCounter();
-
   // Add subtle parallax effect to background elements
   document.addEventListener("mousemove", (e) => {
     const mouseX = e.clientX / window.innerWidth;
